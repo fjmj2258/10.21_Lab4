@@ -11,12 +11,12 @@ import android.widget.RadioGroup;
 
 public class MainActivity2 extends AppCompatActivity {
 
-    private Button send_btn;
+    private Button sent_btn;
     private EditText set_drink;
     private RadioGroup rg1,rg2;
 
-    private  String suger = "無糖";
-    private  String ice_opt = "去冰";
+    private String sugar = "無糖";
+    private String ice_opt = "去冰";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,61 +26,62 @@ public class MainActivity2 extends AppCompatActivity {
         rg1 = findViewById(R.id.radioGroup);
         rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int i) {
-                switch (i){
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
                     case R.id.radioButton1:
-                        suger = "無糖";
+                        sugar = "無糖";
                         break;
                     case R.id.radioButton2:
-                        suger = "少糖";
+                        sugar = "少糖";
                         break;
                     case R.id.radioButton3:
-                        suger = "半糖";
+                        sugar = "半糖";
                         break;
                     case R.id.radioButton4:
-                        suger = "全糖";
+                        sugar = "全糖";
                         break;
                 }
-
             }
         });
 
         rg2 = findViewById(R.id.radioGroup2);
         rg2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int i) {
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i) {
                     case R.id.radioButton5:
-                        suger = "去冰";
+                        ice_opt = "去冰";
                         break;
                     case R.id.radioButton6:
-                        suger = "微冰";
+                        ice_opt = "微冰";
                         break;
                     case R.id.radioButton7:
-                        suger = "少冰";
+                        ice_opt = "少冰";
                         break;
                     case R.id.radioButton8:
-                        suger = "正常冰";
+                        ice_opt = "正常冰";
                         break;
                 }
+
             }
         });
 
-        send_btn = findViewById(R.id.btn_send);
-        send_btn.setOnClickListener(new View.OnClickListener() {
+        sent_btn = findViewById(R.id.btn_send);
+        sent_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 set_drink = findViewById(R.id.ed_drink);
                 String drink = set_drink.getText().toString();
                 Intent i = new Intent();
                 Bundle b = new Bundle();
-                b.putString("suger",suger);
-                b.putString("drink",drink);
-                b.putString("ice",ice_opt);
+                b.putString("sugar", sugar);
+                b.putString("drink", drink);
+                b.putString("ice", ice_opt);
                 i.putExtras(b);
-                setResult(101,i);
+                setResult(101, i);
                 finish();
             }
         });
+
     }
 }

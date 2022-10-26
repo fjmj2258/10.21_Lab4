@@ -24,25 +24,31 @@ public class MainActivity extends AppCompatActivity {
         btn = findViewById(R.id.btn_choice);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                startActivityForResult(new Intent(MainActivity.this, MainActivity2.class), 1);
+            public void onClick(View v) {
+                startActivityForResult(new Intent(MainActivity.this,
+                        MainActivity2.class),1);
             }
         });
+
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data == null) return;
 
-        protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
-            super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1) {
+            if(resultCode == 101){
 
-            if (data == null) return;
-
-            if (requestCode == 1) {
                 Bundle b = data.getExtras();
                 String str1 = b.getString("drink");
-                String str2 = b.getString("suger");
+                String str2 = b.getString("sugar");
                 String str3 = b.getString("ice");
-                tv_meal.setText(String.format("飲料: %s\n\n甜度: %s\n\n冰塊: %s\n\n",str1, str2, str3));
+                tv_meal.setText(String.format("飲料: %s\n\n甜度: %s\n\n冰塊: %s\n\n",
+                        str1,
+                        str2,
+                        str3));
             }
         }
-}
 
+    }
+}
